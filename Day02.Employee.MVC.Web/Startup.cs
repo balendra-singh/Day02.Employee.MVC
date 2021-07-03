@@ -14,6 +14,7 @@ namespace Day02.Employee.MVC.Web
 {
     public class Startup
     {
+        //configuration came from DI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
