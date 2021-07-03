@@ -1,50 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Day02.Employee.MVC.Core.Infrastructure
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
+namespace Day02.Employee.MVC.Core.Data
 {
     [Table("employee")]
-    public partial class EmployeeEntity
+    public partial class Employee
     {
         [Key]
-        [Column(TypeName = "int(11)")]
         public int EmployeeCode { get; set; }
-
-        [Required]        
-        [Column(TypeName = "int(11)")]
         public int JobProfileId { get; set; }
-
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; }
-
-        [Required]
         [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
-
         [Required]
         [Column(TypeName = "varchar(15)")]
         public string PhoneNumber { get; set; }
-
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string AddressLine1 { get; set; }
-
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string AddressLine2 { get; set; }
-
         [Required]
         [Column(TypeName = "varchar(30)")]
         public string City { get; set; }
-
         [Required]
         [Column(TypeName = "varchar(10)")]
         public string PinCode { get; set; }
-
-        [Required]
         [Column(TypeName = "bit(1)")]
-        public bool Status { get; set; }
+        public ulong Status { get; set; }
     }
 }

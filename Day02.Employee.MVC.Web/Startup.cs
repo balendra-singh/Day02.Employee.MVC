@@ -1,4 +1,4 @@
-using Day02.Employee.MVC.Core.Infrastructure;
+using Day02.Employee.MVC.Core.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +29,7 @@ namespace Day02.Employee.MVC.Web
 
             string dbConnnection = Configuration.GetConnectionString("EmployeeDbConnection");
 
-            services.AddDbContext<EmployeeDbContext>(options =>
+            services.AddDbContext<EmployeeDbFirstContext>(options =>
                      options.UseMySql(dbConnnection));
         }
 
