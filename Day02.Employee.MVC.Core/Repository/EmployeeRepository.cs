@@ -1,4 +1,5 @@
-﻿using Day02.Employee.MVC.Core.Models;
+﻿using Day02.Employee.MVC.Core.Data;
+using Day02.Employee.MVC.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,13 @@ namespace Day02.Employee.MVC.Core.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
+        private readonly EmployeeDbFirstContext dbContext;       
+
+        public EmployeeRepository(EmployeeDbFirstContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public WebResponseModel<EmployeeModel> AddEmployee(EmployeeModel employeeModel)
         {
             throw new NotImplementedException();
@@ -14,7 +22,10 @@ namespace Day02.Employee.MVC.Core.Repository
 
         public List<EmployeeModel> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            if(dbContext is null)
+                Console.WriteLine("dbcontext is null");
+
+            return null;
         }
 
         public EmployeeModel GetEmployee(int employeeNumber)

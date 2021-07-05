@@ -1,9 +1,11 @@
 using Day02.Employee.MVC.Core.Data;
+using Day02.Employee.MVC.Core.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -30,7 +32,13 @@ namespace Day02.Employee.MVC.Web
             string dbConnnection = Configuration.GetConnectionString("EmployeeDbConnection");
 
             services.AddDbContext<EmployeeDbFirstContext>(options =>
-                     options.UseMySql(dbConnnection));
+                   options.UseMySql(dbConnnection)); //transient and scoped
+
+            //services.AddTransient per initialization
+            //services.AddScoped per request cycle
+            //services.Singleton per application life cycle
+
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline. [Middlewares in .net core] [shortcircuting]

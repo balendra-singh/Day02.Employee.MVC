@@ -15,6 +15,7 @@ namespace Day02.Employee.MVC.Core.Data
         [Key]
         public int EmployeeCode { get; set; }
         public int JobProfileId { get; set; }
+        public int EmployeeNumber { get; set; }
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; }

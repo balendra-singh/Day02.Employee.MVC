@@ -6,7 +6,7 @@ namespace Day02.Employee.MVC.Core.Models
 {
     public class EmployeeModel
     {
-        public int EmployeeId { get; set; }
+        public int EmployeeCode { get; set; }
         public int EmployeeNumber { get; set; }
         public int JobProfileId { get; set; }
 
