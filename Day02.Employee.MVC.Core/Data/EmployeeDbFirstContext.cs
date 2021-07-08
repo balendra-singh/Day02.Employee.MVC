@@ -19,21 +19,13 @@ namespace Day02.Employee.MVC.Core.Data
         {
         }
        
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Jobprofile> Jobprofile { get; set; }
+        public virtual DbSet<EmployeeEntity> EmployeeEntities { get; set; }
+        public virtual DbSet<JobProfileEntity> JobProfileEntities { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseMySql("server=127.0.0.1;port=3306;user id=root;database=EmployeeDb;password=root;charset=utf8;connect timeout=5", x => x.ServerVersion("8.0.25-mysql"));
-//            }
-//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
-            modelBuilder.Entity<Employee>(entity =>
+            modelBuilder.Entity<EmployeeEntity>(entity =>
             {
                 entity.HasKey(e => e.EmployeeCode)
                     .HasName("PRIMARY");
@@ -63,7 +55,7 @@ namespace Day02.Employee.MVC.Core.Data
                     .HasCollation("utf8mb4_0900_ai_ci");
             });
 
-            modelBuilder.Entity<Jobprofile>(entity =>
+            modelBuilder.Entity<JobProfileEntity>(entity =>
             {
                 entity.Property(e => e.JobProfileName)
                     .HasCharSet("utf8mb4")

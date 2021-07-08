@@ -17,6 +17,6 @@ namespace Day02.Employee.MVC.Core.Repository
         WebResponseModel<bool> UpdateEmployeeStatus(int employeeNumber, EmployeeStatusEnum employeeStatusEnum);
         List<EmployeeModel> GetAllEmployees();
         EmployeeModel GetEmployee(int employeeNumber);
-        bool IsEmployeeCodePresent(int employeeNumber);
+        bool IsEmployeeNumberPresent(int employeeNumber);
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Day02.Employee.MVC.Core.Data
 {
     [Table("employee")]
-    public partial class Employee
+    public partial class EmployeeEntity
     {
         [Key]
         public int EmployeeCode { get; set; }
@@ -37,6 +37,6 @@ namespace Day02.Employee.MVC.Core.Data
         [Column(TypeName = "varchar(10)")]
         public string PinCode { get; set; }
         [Column(TypeName = "bit(1)")]
-        public ulong Status { get; set; }
+        public bool Status { get; set; }
     }
 }

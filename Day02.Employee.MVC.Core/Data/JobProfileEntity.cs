@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Day02.Employee.MVC.Core.Data
 {
     [Table("jobprofile")]
-    public partial class Jobprofile
+    public partial class JobProfileEntity
     {
         [Key]
         public int JobProfileId { get; set; }

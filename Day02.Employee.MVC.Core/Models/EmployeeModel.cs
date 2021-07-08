@@ -8,7 +8,7 @@ namespace Day02.Employee.MVC.Core.Models
     {
         public int EmployeeCode { get; set; }
         public int EmployeeNumber { get; set; }
-        public int JobProfileId { get; set; }
+        public int JobProfileId { get; set; } //DFault->0   //1
 
         public string JobProfile
         {
@@ -28,7 +28,7 @@ namespace Day02.Employee.MVC.Core.Models
         public string Name { get; set; }
 
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; } // 01-01-0001 00:00:000 [MinValue]
 
         public string DateOfBirthString
         {
@@ -55,10 +55,10 @@ namespace Day02.Employee.MVC.Core.Models
         public string City { get; set; }
 
 
-        public string PinCode { get; set; }
+        public string PinCode { get; set; } //null
 
 
-        public bool Status { get; set; }
+        public bool Status { get; set; } //false
         public string StatusString
         {
             get
