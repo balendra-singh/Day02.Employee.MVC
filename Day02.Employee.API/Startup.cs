@@ -2,21 +2,21 @@ using Day02.Employee.MVC.Core.Data;
 using Day02.Employee.MVC.Core.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Day02.Employee.MVC.Web
+namespace Day02.Employee.API
 {
     public class Startup
     {
-        //configuration came from DI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,14 +24,14 @@ namespace Day02.Employee.MVC.Web
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container. //ioc [Inversion of control [Dependency Injection]] container
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                });
+            services.AddControllers()
+                 .AddJsonOptions(options =>
+                 {
+                     options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                 }); 
 
             string dbConnnection = Configuration.GetConnectionString("EmployeeDbConnection");
 
@@ -47,21 +47,13 @@ namespace Day02.Employee.MVC.Web
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline. [Middlewares in .net core] [shortcircuting]
-        // sequential dependent
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // req-> starts
-            // response ends 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-            app.UseStaticFiles(); //returned sucess / failure
 
             app.UseRouting();
 
@@ -69,12 +61,8 @@ namespace Day02.Employee.MVC.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Employee}/{action=ManageEmployees}/{id?}");
+                endpoints.MapControllers();
             });
-            //Req -> ends
-            //response -> start
         }
     }
 }

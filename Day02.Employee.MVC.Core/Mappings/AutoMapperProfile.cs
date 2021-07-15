@@ -11,8 +11,7 @@ namespace Day02.Employee.MVC.Core.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<EmployeeEntity, EmployeeModel>();
-            //CreateMap<EmployeeModel, EmployeeEntity>();
+            CreateMap<EmployeeEntity, EmployeeModel>();            
         }
     }
 }

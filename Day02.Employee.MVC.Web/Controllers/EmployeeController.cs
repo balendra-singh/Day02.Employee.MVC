@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Day02.Employee.MVC.Web.Controllers
@@ -24,7 +25,7 @@ namespace Day02.Employee.MVC.Web.Controllers
 
         [HttpGet]
         public JsonResult GetAllEmployeeList()
-        {
+        {            
             var employeeList = employeeRepository.GetAllEmployees();
             return Json(employeeList);
         }
@@ -32,11 +33,18 @@ namespace Day02.Employee.MVC.Web.Controllers
         [HttpGet]
         public JsonResult GetEmployee(int employeeNumber)
         {
-            if (employeeNumber > 0)
+            if (employeeNumber <= 0)
                 return Json(null);
 
-            var employeeList = employeeRepository.GetEmployee(employeeNumber);
-            return Json(employeeList);
+            if (!employeeRepository.IsEmployeeNumberPresent(employeeNumber))
+                return Json(new WebResponseModel<bool>
+                {
+                    IsSuccess = false,
+                    ErrorMessage = "Employee details does not exits"
+                });
+
+            var employeeDetail = employeeRepository.GetEmployee(employeeNumber);
+            return Json(employeeDetail);
         }
 
         [HttpPost]
@@ -85,7 +93,7 @@ namespace Day02.Employee.MVC.Web.Controllers
                 return Json(new WebResponseModel<bool>
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Invalid employee code"
+                    ErrorMessage = "Invalid employee number"
                 });
 
             if (!Enum.TryParse<EmployeeStatusEnum>(employeeStatus, out EmployeeStatusEnum employeeStatusEnum))
